@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CREOVATE | AI-Native Content Creator Marketplace & Agency Exchange</title>
+  <meta name="description" content="Explore CREOVATE, a local demo prototype for an AI creator marketplace. Compare sample creator profiles, preview campaign matching, prepare a brief, and review a simulated project workflow.">
+  <meta name="keywords" content="AI Content Creator Marketplace, Generative AI, Flux.1 Pro, Runway Gen-3, ComfyUI, Creative Briefs, Commercial AI Video, AI Production Escrow">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:title" content="CREOVATE | AI-Native Content Creator Marketplace">
+  <meta property="og:description" content="Explore sample creator profiles, local campaign matching, brief previews, and a simulated production workflow in the CREOVATE prototype.">
+  <meta property="og:type" content="website">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/marketplace.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <!-- Brand Logo -->
+      <a href="#hero" class="brand-logo" id="logoLink">
+        <div class="logo-symbol">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+          </svg>
+        </div>
+        <span class="brand-name">CREO<span class="text-gradient">VATE</span></span>
+        <span class="brand-badge">EXCHANGE</span>
+      </a>
+
+      <!-- Main Navigation Links -->
+      <nav class="primary-nav" aria-label="Main Navigation">
+        <button class="mobile-nav-toggle" type="button" id="mobileNavToggle" aria-expanded="false" aria-controls="primaryNavLinks">
+          <span aria-hidden="true">☰</span><span>Menu</span>
+        </button>
+        <ul class="nav-links" id="primaryNavLinks">
+          <li class="nav-item">
+            <a href="#creatorsGridSection" class="nav-link active" id="navDiscoverLink">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Discover Creators
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#simulatorSection" class="nav-link" id="navSimulatorLink">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Style Simulator
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#briefStudioSection" class="nav-link" id="navBriefsLink">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Creative Briefs
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#engagementSection" class="nav-link" id="navEngagementLink">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Project Workspace
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#safetySection" class="nav-link" id="navSafetyLink">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Trust Concepts
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Navigation Actions -->
+      <div class="nav-actions">
+        <!-- Dual Persona Switcher -->
+        <div class="role-switcher" title="Switch your active portal perspective">
+          <button class="role-btn active" id="roleBrandBtn" onclick="App.setRole('brand')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Brand Portal
+          </button>
+          <button class="role-btn" id="roleCreatorBtn" onclick="App.setRole('creator')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Creator Studio
+          </button>
+        </div>
+
+        <!-- Post Brief CTA -->
+        <button class="btn btn-primary btn-sm" onclick="document.getElementById('briefStudioSection').scrollIntoView({behavior:'smooth'})" id="publishBriefNavBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Create Demo Brief
+        </button>
+
+        <!-- User Profile Pill -->
+        <div class="user-profile-pill" id="userProfileNavPill" onclick="App.showToast('Sample profile — prototype demo.', 'info')">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="prototype-notice" role="note">
+    <strong>Prototype demo</strong>
+    <span>Sample profiles and local simulations. No live AI generation, payments, escrow, or downloads.</span>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-glow-orb"></div>
+    <div class="container hero-content">
+      <div class="hero-tag">
+        <span class="pulse-dot"></span>
+        <span>AI CREATOR MARKETPLACE PROTOTYPE</span>
+      </div>
+
+      <h1 class="hero-title">
+        Where Brands & AI Creators <span class="text-gradient">Co-Create</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Explore sample creator profiles, preview local campaign matching, prepare a demo brief, and walk through a simulated production workflow. This prototype does not call AI services or move funds.
+      </p>
+
+      <!-- AI Matchmaker Bar -->
+      <div class="hero-match-box">
+        <div class="match-input-wrap">
+          <span class="match-sparkle-icon">✨</span>
+          <input type="text" class="match-input" id="heroMatchInput" placeholder="Type your campaign vibe or prompt (e.g. 'Cyber couture with iridescent liquid textiles' or 'Hypercar rain reveal')..." />
+        </div>
+        <button class="btn btn-primary" id="heroMatchBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Find My Match (Demo)
+        </button>
+      </div>
+
+      <!-- Quick Vibe Pills -->
+      <div class="quick-vibe-pills">
+        <span style="font-size:0.8rem; color:var(--text-muted); margin-right:4px;">Trending Styles:</span>
+        <button class="vibe-pill" onclick="App.runMatchQuery('haute couture liquid metal fashion')">👗 Cyber Couture</button>
+        <button class="vibe-pill" onclick="App.runMatchQuery('electric hypercar night rain cinematic')">🏎️ Hypercar Spec</button>
+        <button class="vibe-pill" onclick="App.runMatchQuery('crystal perfume exploding botanical petals')">💎 Luxury Cosmetics VFX</button>
+        <button class="vibe-pill" onclick="App.runMatchQuery('cinematic drone traverse in desert')">🎥 Temporal VFX Trajectory</button>
+        <button class="vibe-pill" onclick="App.runMatchQuery('photorealistic virtual human avatar')">🤖 Digital Humans</button>
+        <button class="vibe-pill" onclick="App.runMatchQuery('exploded view mechanical watch tourbillon')">⌚ Spatial 3D Splatting</button>
+      </div>
+
+      <!-- Platform Metrics -->
+      <div class="hero-metrics">
+        <div class="metric-item">
+          <div class="metric-value">10</div>
+          <div class="metric-label">Sample Creator Profiles</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">4</div>
+          <div class="metric-label">Brief Presets</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">3</div>
+          <div class="metric-label">Demo Milestone Stages</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">100%</div>
+          <div class="metric-label">Local Prototype</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Container -->
+  <main class="container">
+
+    <!-- CREATOR STUDIO DASHBOARD (Dynamically shown in Creator mode) -->
+    <section id="creatorDashboardSection" style="display:none; padding-top: var(--space-6);">
+      <div id="creatorDashboardContainer"></div>
+    </section>
+
+    <!-- SECTION 1: CREATOR DISCOVERY & DEEP PORTFOLIO EVALUATION -->
+    <section id="creatorsGridSection" style="padding-top: var(--space-8); margin-bottom: var(--space-12);">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-tag">Sample Creator Directory</span>
+          <h2>Browse Sample AI Creators & Studios</h2>
+          <p>Sample creator profiles with illustrative tools, ratings, project stats, and workflow details. Profile information is not independently verified.</p>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn-secondary btn-sm" onclick="App.resetFilters()">Reset Filters</button>
+        </div>
+      </div>
+
+      <div id="matchFeedbackBanner" role="status" aria-live="polite" style="display:none;"></div>
+
+      <!-- Filter Controls Bar -->
+      <div class="filter-bar">
+        <div class="filter-row-top">
+          <!-- Live Search -->
+          <div class="search-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="creatorSearchInput" placeholder="Search creators by skill, content type, specialty, or AI tool..." aria-label="Search creators by skill, content type, specialty, or AI tool" />
+          </div>
+
+          <!-- Tool Filter Dropdown -->
+          <select class="filter-select" id="toolFilterSelect" aria-label="Filter creators by AI tool" onchange="App.setToolFilter(this.value)">
+            <option value="All">All AI Toolstacks</option>
+            <option value="Flux">Flux.1 Pro / Dev</option>
+            <option value="Runway">Runway Gen-3 Alpha</option>
+            <option value="ComfyUI">ComfyUI Node Graphs</option>
+            <option value="Midjourney">Midjourney v6.1</option>
+            <option value="SD">Stable Diffusion 3.5</option>
+            <option value="ElevenLabs">ElevenLabs Audio</option>
+          </select>
+
+          <select class="filter-select" id="contentTypeFilterSelect" aria-label="Filter creators by content type" onchange="App.setContentTypeFilter(this.value)">
+            <option value="All">All Content Types</option>
+            <option value="Video">Video</option>
+            <option value="Animation">Animation</option>
+            <option value="Images">Images & Stills</option>
+            <option value="Audio">Audio</option>
+            <option value="3D & Interactive">3D & Interactive</option>
+          </select>
+
+          <!-- Sort Filter -->
+          <select class="filter-select" id="sortFilterSelect" aria-label="Sort creators" onchange="App.setSort(this.value)">
+            <option value="match">Sort by: Default / Demo Match</option>
+            <option value="rating">Sort by: Highest Rating ★</option>
+            <option value="projects">Sort by: Most Completed Jobs</option>
+          </select>
+        </div>
+
+        <!-- Specialty Filter Chips -->
+        <div class="filter-row-chips">
+          <span class="chip-label">Specialty:</span>
+          <button class="filter-chip active" data-category="All" onclick="App.setCategory('All')">All Domains</button>
+          <button class="filter-chip" data-category="Cinematic Commercials" onclick="App.setCategory('Cinematic Commercials')">Cinematic Commercials</button>
+          <button class="filter-chip" data-category="High Fashion & Lookbooks" onclick="App.setCategory('High Fashion & Lookbooks')">High Fashion & Lookbooks</button>
+          <button class="filter-chip" data-category="3D Product VFX" onclick="App.setCategory('3D Product VFX')">3D Product VFX</button>
+          <button class="filter-chip" data-category="Virtual Avatars" onclick="App.setCategory('Virtual Avatars')">Virtual Avatars</button>
+          <button class="filter-chip" data-category="Sci-Fi Worldbuilding" onclick="App.setCategory('Sci-Fi Worldbuilding')">Sci-Fi Worldbuilding</button>
+          <button class="filter-chip" data-category="Sound Design & Voice" onclick="App.setCategory('Sound Design & Voice')">Sound Design & Voice</button>
+        </div>
+      </div>
+
+      <p id="creatorResultsCount" aria-live="polite" style="font-size:0.82rem; color:var(--text-muted); margin:-16px 0 12px;"></p>
+
+      <!-- Creator Cards Grid Container -->
+      <div class="creator-grid" id="creatorsGridContainer">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- SECTION 2: LOCAL STYLE SIMULATOR & PROMPT PLAYGROUND -->
+    <section id="simulatorSection" style="padding-top: var(--space-8); margin-bottom: var(--space-12);">
+      <div id="promptPlaygroundContainer">
+        <!-- Rendered dynamically by promptPlayground.js -->
+      </div>
+    </section>
+
+    <!-- SECTION 3: CREATIVE BRIEF STUDIO & LOCAL PREVIEW -->
+    <section id="briefStudioSection" style="padding-top: var(--space-8); margin-bottom: var(--space-12);">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-tag">Brief Studio & Marketplace</span>
+          <h2>Prepare a Creative Brief with Local Demo Guidance</h2>
+          <p>Describe a campaign to see a local, rule-based concept preview and sample milestone allocation. No AI service or payment provider is connected.</p>
+        </div>
+      </div>
+
+      <div class="brief-studio-layout">
+        <!-- Left: Local demo brief builder -->
+        <div class="brief-builder-panel" id="briefBuilderSection">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--space-4);">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:1.3rem;">⚡</span>
+              <h3 style="font-size:1.25rem;">Brief Preview Assistant (Demo)</h3>
+            </div>
+            <span class="badge badge-amber">Local Concept Preview</span>
+          </div>
+
+          <!-- Presets Bar -->
+          <div style="margin-bottom:var(--space-4);">
+            <label class="form-label" style="font-size:0.75rem; text-transform:uppercase;">Quick Presets:</label>
+            <div id="briefPresetsContainer" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+          </div>
+
+          <!-- Campaign Title -->
+          <div class="form-group">
+            <label class="form-label" for="briefTitleInput">Campaign Title</label>
+            <input type="text" class="form-input" id="briefTitleInput" placeholder="e.g. AERO KINETIC: 30s Brand Reveal Spec" value="HYPERCRAFT RUNNER: 30s Kinetic Reveal Spec" />
+          </div>
+
+          <!-- Raw Creative Concept -->
+          <div class="form-group">
+            <label class="form-label" for="briefConceptInput">Creative Concept & Campaign Vibe</label>
+            <textarea class="form-textarea" id="briefConceptInput" placeholder="Detail the mood, lighting, product details, and brand identity...">Kinetic commercial for aerodynamic futuristic trail runner. Liquid biomechanics, glowing bioluminescent outsole, shot in heavy rain on volcanic black rocks.</textarea>
+          </div>
+
+          <!-- Category, Budget, Timeline -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4); margin-bottom:var(--space-4);">
+            <div>
+              <label class="form-label" for="briefCategorySelect">Creative Category</label>
+              <select class="form-select" id="briefCategorySelect">
+                <option value="Cinematic Commercials">Cinematic Commercials</option>
+                <option value="High Fashion & Lookbooks">High Fashion & Lookbooks</option>
+                <option value="3D Product VFX">3D Product VFX</option>
+                <option value="Virtual Avatars">Virtual Avatars</option>
+                <option value="Sci-Fi Worldbuilding">Sci-Fi Worldbuilding</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label" for="briefBudgetInput">Demo Budget (₹ INR)</label>
+              <input type="number" class="form-input" id="briefBudgetInput" value="45000" min="1" step="1" />
+            </div>
+          </div>
+
+          <div class="brief-requirements-grid">
+            <div>
+              <label class="form-label" for="briefContentTypeSelect">Content Type</label>
+              <select class="form-select" id="briefContentTypeSelect">
+                <option value="Video">Video</option>
+                <option value="Animation">Animation</option>
+                <option value="Images">Images & Stills</option>
+                <option value="Audio">Audio</option>
+                <option value="3D & Interactive">3D & Interactive</option>
+                <option value="Mixed">Mixed Deliverables</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label" for="briefStyleInput">Style Direction</label>
+              <input type="text" class="form-input" id="briefStyleInput" value="Kinetic, futuristic, organic cyber-textures" />
+            </div>
+            <div>
+              <label class="form-label" for="briefAspectRatioInput">Format / Aspect Ratio</label>
+              <input type="text" class="form-input" id="briefAspectRatioInput" value="16:9 + 9:16" placeholder="e.g. 16:9, 9:16, 4:5, 1:1" />
+            </div>
+            <div>
+              <label class="form-label" for="briefDeliveryFormatInput">Delivery File Format</label>
+              <input type="text" class="form-input" id="briefDeliveryFormatInput" value="4K ProRes MOV + H.264 MP4 + PNG stills" placeholder="e.g. MP4, ProRes MOV, PNG, WAV, GLB" />
+            </div>
+            <div class="brief-commercial-use-field">
+              <label class="form-label" for="briefCommercialUseSelect">Commercial-Use Requirement</label>
+              <select class="form-select" id="briefCommercialUseSelect">
+                <option value="Paid ads + organic social · 12 months · India">Paid ads + organic social · 12 months · India</option>
+                <option value="Organic social only · 3 months · India">Organic social only · 3 months · India</option>
+                <option value="Paid ads + organic social · 12 months · Worldwide">Paid ads + organic social · 12 months · Worldwide</option>
+                <option value="Perpetual commercial use · terms to agree">Perpetual commercial use · terms to agree</option>
+                <option value="Exclusive use · separate agreement required">Exclusive use · separate agreement required</option>
+              </select>
+              <small class="form-hint">Requested scope only; final usage rights require a separate agreement.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="briefDeadlineInput">Production Delivery Timeline</label>
+            <input type="text" class="form-input" id="briefDeadlineInput" value="7 Days Delivery" />
+          </div>
+
+          <!-- Action Button: Synthesize with AI -->
+          <div style="margin-bottom:var(--space-5);">
+            <button class="btn btn-secondary" style="width:100%;" onclick="BriefStudio.synthesizeBrief()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Preview Brief (Local Demo)
+            </button>
+          </div>
+
+          <!-- AI Synthesized Output Box -->
+          <div class="ai-synth-box" id="briefSynthOutput">
+            <div style="font-size:0.85rem; color:var(--text-secondary); text-align:center; padding:12px;">
+              Choose a preset or preview the sample brief logic. This is not AI-generated or a real escrow quote.
+            </div>
+          </div>
+
+          <!-- Publish Button -->
+          <button class="btn btn-primary btn-lg" style="width:100%;" id="publishBriefBtn" onclick="BriefStudio.publishBrief()">
+            Add Brief to Demo Feed
+          </button>
+        </div>
+
+        <!-- Right: Active Briefs Marketplace Feed -->
+        <div class="brief-feed-panel" id="briefsFeedSection">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+            <h3 style="font-size:1.25rem;">Active Marketplace Briefs</h3>
+            <span class="badge badge-amber">Sample Creator Opportunities</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:var(--space-2);">
+            Review sample briefs and simulate submitting a creator pitch. No pitch is sent to a real brand.
+          </p>
+
+          <div id="briefsFeedContainer" style="display:flex; flex-direction:column; gap:var(--space-4);">
+            <!-- Rendered dynamically by briefBuilder.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SIMULATED ENGAGEMENT & PRODUCTION WORKSPACE -->
+    <section id="engagementSection" style="padding-top: var(--space-8); margin-bottom: var(--space-12);">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-tag">Active Engagements</span>
+          <h2>Production Workspace (Discovery to Delivery)</h2>
+          <p>Explore a sample review canvas, local feedback pins, and a simulated milestone flow. Feedback stays in this page; no AI service or money transfer is involved.</p>
+        </div>
+      </div>
+
+      <!-- Live Workspace Container -->
+      <div id="engagementWorkspaceContainer">
+        <!-- Rendered dynamically by engagementConsole.js -->
+      </div>
+    </section>
+
+    <!-- SECTION 5: SAMPLE TRUST CONCEPTS -->
+    <section id="safetySection" style="padding-top: var(--space-8); margin-bottom: var(--space-16);">
+      <div class="glass-panel" style="padding: var(--space-8); border: 1px solid var(--border-glow);">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:var(--space-8);">
+          <div style="max-width:760px;">
+            <span class="badge badge-amber" style="margin-bottom:8px;">Prototype Concepts — Not Guarantees</span>
+            <h2>Trust & Provenance Concepts</h2>
+            <p>These sample screens illustrate ideas for creator disclosures, workflow records, and milestone review. No legal, safety, or payment guarantees are provided by this demo.</p>
+          </div>
+          <button class="btn btn-primary" onclick="App.openIPAgreementModal()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Sample Terms Concept
+          </button>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:var(--space-6);">
+          <div style="background:var(--bg-tertiary); padding:var(--space-5); border-radius:var(--radius-lg); border:1px solid var(--border-subtle);">
+            <div style="font-size:1.5rem; color:var(--accent-cyan); margin-bottom:12px;">🛡️</div>
+            <h4 style="margin-bottom:6px;">Rights Review Workflow</h4>
+            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+              A future marketplace could collect creator disclosures and document agreed usage rights. This prototype has not reviewed creators, datasets, or ownership.
+            </p>
+          </div>
+
+          <div style="background:var(--bg-tertiary); padding:var(--space-5); border-radius:var(--radius-lg); border:1px solid var(--border-subtle);">
+            <div style="font-size:1.5rem; color:var(--accent-purple); margin-bottom:12px;">☍</div>
+            <h4 style="margin-bottom:6px;">Sample Workflow Records</h4>
+            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+              Example prompt, seed, and node-graph records can help teams review a workflow. Values shown here are illustrative and do not guarantee reproducibility.
+            </p>
+          </div>
+
+          <div style="background:var(--bg-tertiary); padding:var(--space-5); border-radius:var(--radius-lg); border:1px solid var(--border-subtle);">
+            <div style="font-size:1.5rem; color:var(--accent-emerald); margin-bottom:12px;">⚖️</div>
+            <h4 style="margin-bottom:6px;">Simulated Milestones</h4>
+            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+              The prototype demonstrates a milestone approval screen. It is not connected to a wallet, contract, escrow service, or payment processor.
+            </p>
+          </div>
+
+          <div style="background:var(--bg-tertiary); padding:var(--space-5); border-radius:var(--radius-lg); border:1px solid var(--border-subtle);">
+            <div style="font-size:1.5rem; color:#F59E0B; margin-bottom:12px;">🎯</div>
+            <h4 style="margin-bottom:6px;">Consistency Review Concept</h4>
+            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+              A future review process could compare consistency across scenes. This demo does not run identity or product-consistency tests.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer style="border-top: 1px solid var(--border-subtle); padding: var(--space-10) 0; background: rgba(8, 9, 14, 0.9);">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-4);">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="logo-symbol" style="width:28px; height:28px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px; height:16px;">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+          </svg>
+        </div>
+        <span style="font-weight:800; font-family:var(--font-heading); font-size:1.1rem;">CREOVATE</span>
+        <span style="color:var(--text-muted); font-size:0.82rem;">© 2026 The AI-Native Creative Network. All rights reserved.</span>
+      </div>
+
+      <div style="display:flex; gap:20px; font-size:0.85rem; color:var(--text-secondary);">
+        <a href="#creatorsGridSection">Creator Directory</a>
+        <a href="#simulatorSection">Style Simulator</a>
+        <a href="#briefStudioSection">Publish Brief</a>
+        <a href="#engagementSection">Demo Milestones</a>
+        <a href="#safetySection">Trust Concepts</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL 1: Deep Portfolio Inspector Modal -->
+  <div class="modal-overlay inspector-modal" id="inspectorModal"></div>
+
+  <!-- MODAL 2: Brief Detail & Submission Modal -->
+  <div class="modal-overlay" id="briefDetailModal"></div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/portfolioInspector.js"></script>
+  <script src="js/promptPlayground.js"></script>
+  <script src="js/briefBuilder.js"></script>
+  <script src="js/engagementConsole.js"></script>
+  <script src="js/matchEngine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

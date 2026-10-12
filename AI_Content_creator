@@ -1,0 +1,42 @@
+# CREOVATE — AI-Native Content Creator Marketplace & Agency Exchange
+
+> The premier AI-native marketplace connecting global brands and creative agencies with top 1% Generative AI creators and directors.
+
+## Quick Launch
+- **Dev Server Status:** Running at [http://localhost:3000](http://localhost:3000)
+- **Entry File:** [index.html](file:///c:/Users/nivas/OneDrive/Desktop/HackXLerate/index.html)
+- **Dev Server Script:** [server.js](file:///c:/Users/nivas/OneDrive/Desktop/HackXLerate/server.js)
+- **Platform Architecture:** [README.md](file:///c:/Users/nivas/OneDrive/Desktop/HackXLerate/README.md)
+
+---
+
+## Core Pillars Implemented
+
+### 1. AI Creator Discovery & Intelligent Matchmaking
+- Multi-faceted filtering across top AI models: Flux.1 Pro, Runway Gen-3 Alpha, ComfyUI, Midjourney v6.1, SD 3.5, and ElevenLabs.
+- 10 verified studios across High Fashion, Hypercar CGI, Virtual Avatars, 3D Product VFX, Temporal Drone Motion, and Generative Audio.
+- Semantic AI Match Engine that computes real-time compatibility scores based on campaign prompts and aesthetic DNA.
+
+### 2. Deep AI Portfolio Inspector
+- Draggable Before / After split comparison slider (Raw Base Diffusion Pass vs 8K Inpainted & Graded Master).
+- Complete prompt & parameter recipe manifests (Seeds, Guidance Scales, CFG, LoRA weights, negative conditioning).
+- Interactive ComfyUI 22-Node Pipeline graph visualizer (Dual CLIP -> KSampler -> FaceDetailer -> SUPIR 8K).
+- Zero-drift multi-seed character and product consistency reels.
+
+### 3. Live Style Simulator & Prompt Playground
+- Test fine-tuned creator LoRAs in real time before funding milestone escrow.
+- Interactive token injection, CFG adjustment, and real-time latent denoising progress simulation.
+
+### 4. Creative Brief Studio & BriefSynth AI
+- Instant campaign brief calibration with visual style directives, model constraints, and milestone breakdowns.
+- One-click industry brief presets (Hypercar Spec, Luxury Perfume Caustics, Cyber Couture, CPG Liquid Burst).
+- Active marketplace brief feed with 1-click AI proposal submissions.
+
+### 5. Production & Milestone Escrow Console (Discovery to Delivery)
+- Multi-stage smart contract escrow protection with step-by-step milestone fund releases.
+- Precision visual annotation canvas on active 4K deliverable renders with click-to-pin feedback.
+- AI Prompt & Workflow Resolvers providing automatic prompt modifier recipes for client notes.
+- Cryptographic Delivery Vault & IP clearance downloads (4K ProRes, ComfyUI JSON, Seed Manifest, Commercial Buyout Agreement).
+
+### 6. Dual-Persona Role Switcher
+- Instant toggle between Brand Portal (Nike Innovation Lab perspective) and Creator Studio (Elena Rostova / AURA Synthetics perspective with GPU cluster metrics and private model vault).

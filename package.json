@@ -1,0 +1,23 @@
+{
+  "name": "creovate-ai-creator-marketplace",
+  "version": "1.0.0",
+  "description": "AI-Native Marketplace Connecting Creators with Brands and Creative Agencies",
+  "main": "server.js",
+  "scripts": {
+    "build": "node build-static.js",
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "ai-marketplace",
+    "generative-ai",
+    "creators",
+    "creative-briefs",
+    "comfyui",
+    "flux",
+    "midjourney",
+    "runway"
+  ],
+  "author": "Creovate Platform Team",
+  "license": "MIT"
+}
